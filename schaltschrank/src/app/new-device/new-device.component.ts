@@ -34,6 +34,9 @@ export class NewDeviceComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Creates a new Device and stores it inside the selected Rack
+   */
   onAddDevice(): void {
     if (this.idValidator.valid && this.heightValidator.valid && this.widthValidator.valid) {
       const device: Device = new Device(this.deviceID, this.deviceHeight, this.deviceWidth);
@@ -42,6 +45,9 @@ export class NewDeviceComponent implements OnInit {
     }
   }
 
+  /**
+   * Closes the Input Form
+   */
   onCancel(): void {
       this.valueChange.emit(false);
   }

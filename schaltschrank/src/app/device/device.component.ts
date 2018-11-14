@@ -23,6 +23,10 @@ export class DeviceComponent implements OnInit {
     this.addDeviceClicked = true;
   }
 
+  /**
+   * Hides the Add Device Form
+   * @param value
+   */
   hideAddDeviceForm(value): void {
     this.addDeviceClicked = value;
   }

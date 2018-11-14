@@ -23,6 +23,9 @@ export class Rack {
         }
     }
 
+    /** Gets all devices of the rack
+     * @returns An Array with all Devices
+    */
     getDevices(): Device[] {
 
         let deviceList = [];
@@ -38,6 +41,9 @@ export class Rack {
         return deviceList;
     }
 
+    /** Stores a new Device
+     * @returns true if the device was stored
+     */
     storeDevice(newDevice: Device): boolean {
 
         let deviceStored = false;

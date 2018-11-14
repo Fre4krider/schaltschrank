@@ -21,6 +21,9 @@ export class AppComponent implements OnInit {
     this.getRacks();
   }
 
+  /**
+   * Gets all Racks via Service and saves them in the Component
+   */
   getRacks(): void {
     this.racks = this.rackService.getRacks();
   }
@@ -29,11 +32,18 @@ export class AppComponent implements OnInit {
     return this.selectedRack;
   }
 
+  /**
+   * Stores a selected rack
+   * @param rack the selected Rack
+   */
   onSelect(rack: Rack): void {
     this.selectedRack = rack;
     console.log('Selected Rack: ' + this.selectedRack.id);
   }
 
+  /**
+   * Activates the new Rack Form
+   */
   addRackClick(): void {
     this.addRackClicked = true;
   }
@@ -43,6 +53,10 @@ export class AppComponent implements OnInit {
     this.selectedRack = undefined;
   }
 
+  /**
+   * Hides the Add new Rack Form after hitting the Save button
+   * @param value boolean if the button was clicked
+   */
   hideAddRackForm(value): void {
     this.addRackClicked = value;
   }

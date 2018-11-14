@@ -33,6 +33,9 @@ export class NewRackComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Adds a new Rack
+   */
   onAddRack(): void {
     if (this.idValidator.valid && this.heightValidator.valid && this.widthValidator.valid) {
       const rack: Rack = new Rack(this.rackID, this.rackHeight, this.rackWidth);
@@ -41,6 +44,9 @@ export class NewRackComponent implements OnInit {
     }
   }
 
+  /**
+   * Closes the Input Form
+   */
   onCancel(): void {
       this.valueChange.emit(false);
   }
