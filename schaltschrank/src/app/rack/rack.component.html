@@ -1,0 +1,13 @@
+<div *ngIf="selectedRack">
+  <ul>
+    <h4>{{selectedRack.id}}</h4>
+    <li>
+      Height: {{selectedRack.height}}
+    </li>
+    <li>
+      Width: {{selectedRack.width}}
+    </li>
+  </ul>
+  <hr>
+    <app-device [selectedRack]="selectedRack"></app-device>
+</div>

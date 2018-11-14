@@ -1,0 +1,73 @@
+.sidenav {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.toggleBtn {
+  margin-left: 20px;
+}
+.addRackBtn {
+  margin-left: 40px;
+  background-color: #ffff;
+}
+.rack {
+  margin: 0px;
+  list-style-type: none;
+  width: 10em;
+  padding-inline-start: 0px;
+}
+.rack li {
+  cursor: pointer;
+  position: relative;
+  left: 0;
+  background-color: #77a6d4;
+  margin: .5em;
+  padding: .3em 0;
+  height: 1.6em;
+  border-radius: 5px;
+}
+.selected {
+  background-color: #CFD8DC !important;
+  color: white;
+}
+.rack li.selected:hover {
+  background-color: #BBD8DC !important;
+  color: white;
+}
+.rack li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+  left: .1em;
+}
+
+.rackIds{
+  color: #ffff;
+  display: block;
+  width: 100px;
+  margin-left: 10px;
+ }
+
+.headerClass{
+  margin-left: 30px;
+ }
+
+button {
+  background-color: #eee;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+}
+button:hover {
+  background-color: #cfd8dc;
+} 
+button.delete {
+  position: relative;
+  left: 110px;
+  top: -20px;
+  background-color: gray !important;
+  color: white;
+}

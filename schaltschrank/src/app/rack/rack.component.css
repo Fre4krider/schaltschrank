@@ -1,0 +1,63 @@
+/* RackComponent's private CSS styles */
+.selected {
+  background-color: #CFD8DC !important;
+  color: white;
+}
+.rack {
+  margin: 0px;
+  list-style-type: none;
+  width: 10em;
+  padding-inline-start: 0px;
+}
+.rack li {
+  cursor: pointer;
+  position: relative;
+  left: 0;
+  background-color: #77a6d4;
+  margin: .5em;
+  padding: .3em 0;
+  height: 1.6em;
+  border-radius: 5px;
+}
+.rack li.selected:hover {
+  background-color: #BBD8DC !important;
+  color: white;
+}
+.rack li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+  left: .1em;
+}
+
+ .rackIds{
+  color: #ffff;
+  display: block;
+  width: 50px;
+  margin-left: 10px;
+ }
+
+  .headerClass{
+  margin-left: 10px;
+ }
+
+button {
+  background-color: #eee;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+  font-family: Arial;
+}
+ 
+button:hover {
+  background-color: #cfd8dc;
+}
+ 
+button.delete {
+  position: relative;
+  left: 110px;
+  top: -20px;
+  background-color: gray !important;
+  color: white;
+}
