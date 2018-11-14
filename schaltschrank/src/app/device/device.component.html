@@ -1,12 +1,15 @@
-<h3 class="deviceHeader" >Devices</h3>
-<ul class="device">
-  <li *ngFor="let device of devices">
-    <span class="deviceIds">
-      {{device.id}}
-    </span>
-    <button class="delete" title="delete device"
-      (click)="deleteDevice(device)">x</button>
-  </li>
-</ul>
-<button class="addDeviceBtn" mat-button (click)="addDeviceClick()">Add Device</button>
+<button mat-raised-button mat-button (click)="addDeviceClick()">Add Device</button>
+<button mat-raised-button mat-button (click)="onShowDevices()">Refresh Devices</button>
+<div *ngIf="showDevices">
+  <h3 class="deviceHeader">Devices</h3>
+  <ul class="device">
+    <li *ngFor="let device of devices">
+      <span class="deviceIds">
+        {{device.id}}
+      </span>
+      <button class="delete" title="delete device"
+        (click)="deleteDevice(device)">x</button>
+    </li>
+  </ul>
+</div>  
 <app-new-device [selectedRack]="selectedRack" *ngIf="addDeviceClicked" (valueChange)="hideAddDeviceForm($event)"></app-new-device>

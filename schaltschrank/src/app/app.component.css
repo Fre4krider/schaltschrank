@@ -61,9 +61,6 @@ button {
   cursor: pointer;
   cursor: hand;
 }
-button:hover {
-  background-color: #cfd8dc;
-} 
 button.delete {
   position: relative;
   left: 110px;

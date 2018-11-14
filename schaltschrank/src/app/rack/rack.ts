@@ -31,7 +31,7 @@ export class Rack {
         let deviceList = [];
 
         for (let i = 0; i < this.devices.length; i++) {
-            for (let j = 0; this.devices[i].length; j++) {
+            for (let j = 0; j < this.devices[i].length; j++) {
                 if (!deviceList.includes(this.devices[i][j]) && this.devices[i][j] !== null) {
                     deviceList.push(this.devices[i][j]);
                 }

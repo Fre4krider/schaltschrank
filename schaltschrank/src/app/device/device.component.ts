@@ -13,10 +13,10 @@ export class DeviceComponent implements OnInit {
 
   addDeviceClicked = false;
   devices: Device[]; // Fill with devices of selected rack
+  showDevices = false;
   constructor() { }
 
   ngOnInit() {
-    this.devices = this.selectedRack.getDevices();
   }
 
   addDeviceClick(): void {
@@ -24,8 +24,16 @@ export class DeviceComponent implements OnInit {
   }
 
   /**
+   * Shows all Devices inside the rack
+   */
+  onShowDevices(): void {
+    this.devices = this.selectedRack.getDevices();
+    this.showDevices = true;
+  }
+
+  /**
    * Hides the Add Device Form
-   * @param value
+   * @param value boolean if button was clicked
    */
   hideAddDeviceForm(value): void {
     this.addDeviceClicked = value;
