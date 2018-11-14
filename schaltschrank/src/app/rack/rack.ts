@@ -42,6 +42,7 @@ export class Rack {
     }
 
     /** Stores a new Device
+     * @param newDevice the new device
      * @returns true if the device was stored
      */
     storeDevice(newDevice: Device): boolean {
@@ -59,6 +60,11 @@ export class Rack {
         return deviceStored;
         }
 
+    /**
+     * Searches for a free Slot for the new device in a rack
+     * @param newDevice the new device
+     * @returns A 2-dimensional Array with coordinates of the free Slot ([x,y],[x,y])
+     */
     private findDeviceSlot(newDevice: Device): number[][] {
     let devicePos: number[][];
     let y = 0;
