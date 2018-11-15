@@ -9,7 +9,7 @@ export class RackService {
 
   RACKSTACK = 'rackStack';
   racks: Rack[] = [];
-  selectedRack: Rack;
+  private selectedRack: Rack;
 
   constructor() { }
 
@@ -43,7 +43,7 @@ export class RackService {
   setSelectedRack(rack: Rack): void {
     this.selectedRack = rack;
   }
-  
+
   /**
    * Returns the Rack object inside the Racks Array
    * @param selectedRack the rack the user selected
