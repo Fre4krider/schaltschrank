@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RackService } from '../rack.service';
 import { Rack } from '../rack/rack';
 import { FormControl, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-new-rack',
@@ -9,8 +10,6 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./new-rack.component.css']
 })
 export class NewRackComponent implements OnInit {
-
-  @Output() valueChange = new EventEmitter();
 
   rackID: string;
   rackHeight: number;
@@ -28,7 +27,7 @@ export class NewRackComponent implements OnInit {
     Validators.max(30)
   ]);
 
-  constructor(private rackService: RackService) {}
+  constructor(private rackService: RackService, public newRackDialogRef: MatDialogRef<NewRackComponent>) {}
 
   ngOnInit() {
   }
@@ -39,7 +38,6 @@ export class NewRackComponent implements OnInit {
   onAddRackSave(): void {
     if (this.idValidator.valid && this.heightValidator.valid && this.widthValidator.valid) {
       const rack: Rack = new Rack(this.rackID, this.rackHeight, this.rackWidth);
-      this.valueChange.emit(false);
       this.rackService.addRack(rack);
     }
   }
@@ -48,6 +46,6 @@ export class NewRackComponent implements OnInit {
    * Closes the Input Form
    */
   onCancel(): void {
-      this.valueChange.emit(false);
+      this.newRackDialogRef.close();
   }
 }

@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   racks: Rack[];
   selectedRack: Rack;
 
-  constructor(private rackService: RackService, public dialog: MatDialog) { }
+  constructor(private rackService: RackService, public newRackDialog: MatDialog) { }
 
   ngOnInit() {
     this.getRacks();
@@ -39,19 +39,14 @@ export class AppComponent implements OnInit {
    * @param rack the selected Rack
    */
   onSelect(rack: Rack): void {
+    this.rackService.setSelectedRack(rack);
     this.selectedRack = rack;
     console.log('Selected Rack: ' + this.selectedRack.id);
   }
 
-  /**
-   * Activates the new Rack Form
-   */
-  addRackClick(): void {
-    this.addRackClicked = true;
-  }
-
   deleteRack(rack: Rack): void {
     this.rackService.deleteRack(rack);
+    this.rackService.setSelectedRack(undefined);
     this.selectedRack = undefined;
   }
 
@@ -65,6 +60,6 @@ export class AppComponent implements OnInit {
   }
 
   openDialog(): void {
-    this.dialog.open(NewRackComponent);
+    this.newRackDialog.open(NewRackComponent);
   }
 }

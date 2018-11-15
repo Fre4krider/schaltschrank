@@ -1,5 +1,5 @@
-<mat-sidenav-container class="sidenav">
-  <mat-sidenav #sidenav mode="side">
+<mat-drawer-container class="sidenav">
+  <mat-drawer mode="side" opened>
     <h2 class="headerClass">All Racks</h2>
       <ul class="rack">
         <li *ngFor="let rack of racks">
@@ -11,11 +11,8 @@
         </li>
       </ul>
     <button mat-raised-button class="addRackBtn" mat-button (click)="openDialog()">Add Rack</button>
-  </mat-sidenav>
-
-  <mat-sidenav-content>
-    <p><button class="toggleBtn" mat-button (click)="sidenav.toggle()">Show Racks</button></p>
-    <app-new-rack *ngIf="addRackClicked" (valueChange)="hideAddRackForm($event)"></app-new-rack>
-    <app-rack *ngIf="!addRackClicked" [selectedRack]="selectedRack"></app-rack>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-rack [selectedRack]="selectedRack"></app-rack>
+  </mat-drawer-content>
+</mat-drawer-container>

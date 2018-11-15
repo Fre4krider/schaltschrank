@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NewDeviceComponent } from './new-device/new-device.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NewDeviceDialogComponent } from './new-device-dialog/new-device-dialog.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,13 @@ import { MatDialogModule } from '@angular/material/dialog';
     RackComponent,
     DeviceComponent,
     NewRackComponent,
-    NewDeviceComponent
+    NewDeviceComponent,
+    NewDeviceDialogComponent
+  ],
+  entryComponents: [
+    NewRackComponent,
+    NewDeviceComponent,
+    NewDeviceDialogComponent
   ],
   imports: [
     BrowserModule,

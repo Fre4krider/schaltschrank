@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Device } from './device';
 import { Rack } from '../rack/rack';
+import { NewDeviceComponent } from '../new-device/new-device.component';
+import { MatDialog } from '@angular/material';
+import { RackService } from '../rack.service';
 
 @Component({
   selector: 'app-device',
@@ -8,35 +11,29 @@ import { Rack } from '../rack/rack';
   styleUrls: ['./device.component.css']
 })
 export class DeviceComponent implements OnInit {
-  // TODO onShowDevices Bug;
 
-  @Input() selectedRack: Rack;
+  selectedRack: Rack;
 
-  addDeviceClicked = false;
   devices: Device[]; // Fill with devices of selected rack
   showDevices = false;
-  constructor() { }
+  constructor(private rackService: RackService, public newDeviceDialog: MatDialog) { }
 
   ngOnInit() {
   }
 
   addDeviceClick(): void {
-    this.addDeviceClicked = true;
+    this.openNewDeviceDialog();
   }
 
   /**
    * Shows all Devices inside the rack
    */
   onShowDevices(): void {
-    this.devices = this.selectedRack.getDevices();
+    this.devices = this.rackService.getSelectedRack().getDevices();
     this.showDevices = true;
   }
 
-  /**
-   * Hides the Add Device Form
-   * @param value boolean if button was clicked
-   */
-  hideAddDeviceForm(value): void {
-    this.addDeviceClicked = value;
+    openNewDeviceDialog(): void {
+    this.newDeviceDialog.open(NewDeviceComponent);
   }
 }

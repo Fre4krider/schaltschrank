@@ -1,8 +1,10 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { RackService } from '../rack.service';
 import { Device } from '../device/device';
 import { Rack } from '../rack/rack';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { NewDeviceDialogComponent } from '../new-device-dialog/new-device-dialog.component';
 
 @Component({
   selector: 'app-new-device',
@@ -11,9 +13,7 @@ import { Rack } from '../rack/rack';
 })
 export class NewDeviceComponent implements OnInit {
 
-  @Output() valueChange = new EventEmitter();
-  @Input() selectedRack: Rack;
-
+  selectedRack: Rack;
   deviceID: string;
   deviceHeight: number;
   deviceWidth: number;
@@ -29,7 +29,8 @@ export class NewDeviceComponent implements OnInit {
     Validators.min(1),
     Validators.max(30)
   ]);
-  constructor(private rackService: RackService) { }
+  constructor(
+    private rackService: RackService, public errorDialog: MatDialog, public newDeviceDialogRef: MatDialogRef<NewDeviceComponent>) { } //
 
   ngOnInit() {
   }
@@ -37,11 +38,15 @@ export class NewDeviceComponent implements OnInit {
   /**
    * Creates a new Device and stores it inside the selected Rack
    */
-  onAddDevice(): void {
+  onAddDeviceSave(): void {
+    this.selectedRack = this.rackService.getSelectedRack();
+    let deviceAdded = false;
     if (this.idValidator.valid && this.heightValidator.valid && this.widthValidator.valid) {
       const device: Device = new Device(this.deviceID, this.deviceHeight, this.deviceWidth);
-      this.valueChange.emit(false);
-      this.rackService.addDevice(device, this.selectedRack);
+      deviceAdded = this.rackService.addDevice(device, this.selectedRack);
+      if (!deviceAdded) {
+        this.openErrorDialog();
+      }
     }
   }
 
@@ -49,7 +54,10 @@ export class NewDeviceComponent implements OnInit {
    * Closes the Input Form
    */
   onCancel(): void {
-      this.valueChange.emit(false);
+      this.newDeviceDialogRef.close();
   }
 
+  openErrorDialog(): void {
+    this.errorDialog.open(NewDeviceDialogComponent);
+  }
 }
