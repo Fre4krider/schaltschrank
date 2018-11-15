@@ -1,10 +1,10 @@
 <button mat-raised-button mat-button (click)="addDeviceClick()">Add Device</button>
-<button mat-raised-button mat-button (click)="onShowDevices()">Refresh Devices</button>
-<div *ngIf="showDevices">
+<button mat-raised-button mat-button (click)="showDevices()">Refresh Devices</button>
+<div *ngIf="devices">
   <h3 class="deviceHeader">Devices</h3>
   <ul class="device">
     <li *ngFor="let device of devices">
-      <span class="deviceIds">
+      <span class="deviceIds" (click)="onSelectDevice(device)">
         {{device.id}}
       </span>
       <button class="delete" title="delete device"

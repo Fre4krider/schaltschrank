@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { RackService } from '../rack.service';
 import { Device } from '../device/device';
@@ -12,6 +12,8 @@ import { NewDeviceDialogComponent } from '../new-device-dialog/new-device-dialog
   styleUrls: ['./new-device.component.css']
 })
 export class NewDeviceComponent implements OnInit {
+
+  @Output() deviceAddedEvent = new EventEmitter();
 
   selectedRack: Rack;
   deviceID: string;
@@ -30,7 +32,8 @@ export class NewDeviceComponent implements OnInit {
     Validators.max(30)
   ]);
   constructor(
-    private rackService: RackService, public errorDialog: MatDialog, public newDeviceDialogRef: MatDialogRef<NewDeviceComponent>) { } //
+    private rackService: RackService, public errorDialog: MatDialog,
+    public newDeviceDialogRef: MatDialogRef<NewDeviceComponent>) { } //
 
   ngOnInit() {
   }
@@ -39,13 +42,15 @@ export class NewDeviceComponent implements OnInit {
    * Creates a new Device and stores it inside the selected Rack
    */
   onAddDeviceSave(): void {
+    let devicesAdded = false;
     this.selectedRack = this.rackService.getSelectedRack();
-    let deviceAdded = false;
     if (this.idValidator.valid && this.heightValidator.valid && this.widthValidator.valid) {
       const device: Device = new Device(this.deviceID, this.deviceHeight, this.deviceWidth);
-      deviceAdded = this.rackService.addDevice(device, this.selectedRack);
-      if (!deviceAdded) {
+      devicesAdded = this.rackService.addDevice(device, this.selectedRack);
+      if (!devicesAdded) {
         this.openErrorDialog();
+      } else {
+        this.deviceAddedEvent.emit();
       }
     }
   }

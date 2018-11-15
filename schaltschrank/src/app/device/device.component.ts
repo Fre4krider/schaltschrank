@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Device } from './device';
 import { Rack } from '../rack/rack';
 import { NewDeviceComponent } from '../new-device/new-device.component';
 import { MatDialog } from '@angular/material';
 import { RackService } from '../rack.service';
+import { DeviceDetailComponent } from '../device-detail/device-detail.component';
 
 @Component({
   selector: 'app-device',
@@ -13,10 +14,10 @@ import { RackService } from '../rack.service';
 export class DeviceComponent implements OnInit {
 
   selectedRack: Rack;
+  devices: Device[];
+  selectedDevice: Device;
 
-  devices: Device[]; // Fill with devices of selected rack
-  showDevices = false;
-  constructor(private rackService: RackService, public newDeviceDialog: MatDialog) { }
+  constructor(private rackService: RackService, public newDeviceDialog: MatDialog, public deviceDetailDialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -25,15 +26,27 @@ export class DeviceComponent implements OnInit {
     this.openNewDeviceDialog();
   }
 
+  deleteDevice(device: Device): void {
+    this.rackService.deleteDeviceFromRack(device);
+    this.showDevices();
+  }
+
   /**
    * Shows all Devices inside the rack
    */
-  onShowDevices(): void {
+  showDevices(): void {
     this.devices = this.rackService.getSelectedRack().getDevices();
-    this.showDevices = true;
   }
 
-    openNewDeviceDialog(): void {
-    this.newDeviceDialog.open(NewDeviceComponent);
+  openNewDeviceDialog(): void {
+    const dialogRef = this.newDeviceDialog.open(NewDeviceComponent);
+    dialogRef.componentInstance.deviceAddedEvent.subscribe(() => {
+      this.showDevices();
+    })
+  }
+
+  onSelectDevice(device: Device): void {
+    this.deviceDetailDialog.open(DeviceDetailComponent, {data:
+      {id: device.id, height: device.height, width: device.width, xPos: device.xPos, yPos: device.yPos}});
   }
 }

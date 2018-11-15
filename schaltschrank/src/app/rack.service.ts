@@ -49,7 +49,7 @@ export class RackService {
    * @param selectedRack the rack the user selected
    * @returns the rack object inside the array
    */
-  private getRackinRacks(selectedRack: Rack): Rack {
+  private getRackInRacks(selectedRack: Rack): Rack {
     return this.racks[this.racks.indexOf(selectedRack)];
   }
 
@@ -68,7 +68,7 @@ export class RackService {
    * @returns a array with all Devices inside the Rack
    */
   getDevices(selectedRack: Rack): Device[] {
-    return this.getRackinRacks(selectedRack).getDevices();
+    return this.getRackInRacks(selectedRack).getDevices();
   }
 
   /**
@@ -89,9 +89,14 @@ export class RackService {
   addDevice(newDevice: Device, selectedRack: Rack): boolean {
 
     let deviceStored = false;
-    deviceStored = this.getRackinRacks(selectedRack).storeDevice(newDevice);
+    deviceStored = this.getRackInRacks(selectedRack).storeDevice(newDevice);
     // this.saveToLocalStorage();
     return deviceStored;
+  }
+
+  deleteDeviceFromRack(device: Device): void {
+    this.getRackInRacks(this.selectedRack).deleteDevice(device);
+    // this.saveToLocalStorage();
   }
 
   /**

@@ -50,6 +50,7 @@ export class Rack {
         let deviceStored = false;
         const devicePos = this.findDeviceSlot(newDevice);
 
+        newDevice.setDevicePos(devicePos[0][0], devicePos[0][1]);
         if (devicePos.length !== 0) {
                 for (let i = 0; i < devicePos.length; i++) {
                         const collumn = devicePos[i];
@@ -73,49 +74,55 @@ export class Rack {
     let slotFound = false;
     devicePos = [];
 
-    if (newDevice.width < newDevice.height) {
-
-    } else {
-            while (!slotFound) {
-                for (let i = 0, j = y; i < this.devices.length; i++) {
-                        if (this.devices[i][j] === null) {
-                                    for (j = y; j < this.devices[i].length; j++) {
-                                        if (this.devices[i][j] === null) {
-                                            freeCollumnHeight++;
-                                            devicePos.push([i, j]);
-                                            if (freeCollumnHeight === newDevice.height) {
-                                                break;
-                                            }
-                                        } else {
-                                            freeCollumnHeight = 0;
-                                            freeSlotWidth = 0;
-                                            devicePos = [];
+        while (!slotFound) {
+            for (let i = 0, j = y; i < this.devices.length; i++) {
+                    if (this.devices[i][j] === null) {
+                                for (j = y; j < this.devices[i].length; j++) {
+                                    if (this.devices[i][j] === null) {
+                                        freeCollumnHeight++;
+                                        devicePos.push([i, j]);
+                                        if (freeCollumnHeight === newDevice.height) {
                                             break;
                                         }
+                                    } else {
+                                        freeCollumnHeight = 0;
+                                        freeSlotWidth = 0;
+                                        devicePos = [];
+                                        break;
                                     }
-                            freeSlotWidth++;
-                            if (freeSlotWidth === newDevice.width && freeCollumnHeight === newDevice.height) {
-                                slotFound = true;
-                                break;
-                            }
-                            freeCollumnHeight = 0;
+                                }
+                        freeSlotWidth++;
+                        if (freeSlotWidth === newDevice.width && freeCollumnHeight === newDevice.height) {
+                            slotFound = true;
+                            break;
                         }
-                }
-                if (freeSlotWidth !== newDevice.width && freeCollumnHeight !== newDevice.height) {
-                    freeCollumnHeight = 0;
-                    freeSlotWidth = 0;
-                    devicePos = [];
-                    y++;
-                    if (y > newDevice.height) {
-                        break;
+                        freeCollumnHeight = 0;
                     }
+            }
+            if (freeSlotWidth !== newDevice.width && freeCollumnHeight !== newDevice.height) {
+                freeCollumnHeight = 0;
+                freeSlotWidth = 0;
+                devicePos = [];
+                y++;
+                if (y > newDevice.height) {
+                    break;
                 }
             }
-    }
+        }
     return devicePos;
     }
 
-    deleteDevice(): void {
-       // this.devices.filter();
+    deleteDevice(device: Device): void {
+       for (let i = 0; i < this.devices.length; i++) {
+            for (let j = 0; j < this.devices[i].length; j++) {
+                if (this.devices[i][j] === device && this.devices[i][j] !== null) {
+                    this.devices[i][j] = null;
+                }
+            }
+        }
+    }
+
+    devicePos(): void {
+
     }
 }

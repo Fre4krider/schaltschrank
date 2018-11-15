@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   constructor(private rackService: RackService, public newRackDialog: MatDialog) { }
 
   ngOnInit() {
-    this.getRacks();
+      this.getRacks();
   }
 
   /**

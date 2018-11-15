@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>Device {{data.id}} Details</h1>
+<mat-dialog-content>    
+    <div *ngIf="data">
+      <ul>
+        <li>
+          Height: {{data.height}}
+        </li>
+        <li>
+          Width: {{data.width}}
+        </li>
+        <li>
+          Position: {{data.xPos}}, {{data.yPos}}
+        </li>
+      </ul>
+      <hr>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button class="buttons" (click)="onCancel()">Close</button>
+</mat-dialog-actions>
