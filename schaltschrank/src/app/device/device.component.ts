@@ -8,6 +8,7 @@ import { Rack } from '../rack/rack';
   styleUrls: ['./device.component.css']
 })
 export class DeviceComponent implements OnInit {
+  // TODO onShowDevices Bug;
 
   @Input() selectedRack: Rack;
 

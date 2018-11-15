@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RackService } from './rack.service';
 import { Rack } from './rack/rack';
+import { NewRackComponent } from './new-rack/new-rack.component';
+import { MatDialog } from '@angular/material';
 
 
 @Component({
@@ -15,7 +17,7 @@ export class AppComponent implements OnInit {
   racks: Rack[];
   selectedRack: Rack;
 
-  constructor(private rackService: RackService) { }
+  constructor(private rackService: RackService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getRacks();
@@ -54,10 +56,15 @@ export class AppComponent implements OnInit {
   }
 
   /**
-   * Hides the Add new Rack Form after hitting the Save button
-   * @param value boolean if the button was clicked
+   * Hides the Add new Rack Form after hitting the Save or Cancel button
+   * Gets triggert by EventEmitter
+   * @param value boolean provided by the valueChanged variable in the HTML Template
    */
   hideAddRackForm(value): void {
     this.addRackClicked = value;
+  }
+
+  openDialog(): void {
+    this.dialog.open(NewRackComponent);
   }
 }

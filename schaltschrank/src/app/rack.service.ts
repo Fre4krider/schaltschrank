@@ -7,9 +7,33 @@ import { Device } from './device/device';
 })
 export class RackService {
 
+  RACKSTACK = 'rackStack';
   racks: Rack[] = [];
 
   constructor() { }
+
+  private saveToLocalStorage(): void {
+
+    if (typeof this.racks === 'object') {
+      localStorage.setItem(this.RACKSTACK, JSON.stringify(this.racks));
+    } else {
+      localStorage.setItem(this.RACKSTACK, this.racks);
+    }
+  }
+
+  private getFromLocalStorage(): any {
+    const value: any = localStorage.getItem(this.RACKSTACK);
+
+    if (value) {
+        try {
+          return JSON.parse(value);
+        } catch (e) {
+          return value;
+        }
+    } else {
+      return [];
+    }
+  }
 
   /**
    * Returns the Rack object inside the Racks Array
@@ -25,6 +49,7 @@ export class RackService {
    * @returns an array with all racks
    */
   getRacks(): Rack[] {
+    // this.racks = this.getFromLocalStorage();
     return this.racks;
   }
 
@@ -43,6 +68,7 @@ export class RackService {
    */
   addRack(rack: Rack): void {
     this.racks.push(rack);
+    // this.saveToLocalStorage();
   }
 
   /**
@@ -52,7 +78,11 @@ export class RackService {
    * @returns true if the device was sucessfully stored
    */
   addDevice(newDevice: Device, selectedRack: Rack): boolean {
-    return this.getRackinRacks(selectedRack).storeDevice(newDevice);
+
+    let deviceStored = false;
+    deviceStored = this.getRackinRacks(selectedRack).storeDevice(newDevice);
+    // this.saveToLocalStorage();
+    return deviceStored;
   }
 
   /**
@@ -63,6 +93,7 @@ export class RackService {
     const index = this.racks.indexOf(selectedRack);
     if (index > -1) {
       this.racks.splice(index, 1);
+      // this.saveToLocalStorage();
     }
   }
 }

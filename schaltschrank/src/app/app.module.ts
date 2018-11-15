@@ -12,6 +12,7 @@ import { NewRackComponent } from './new-rack/new-rack.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NewDeviceComponent } from './new-device/new-device.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { NewDeviceComponent } from './new-device/new-device.component';
     MatSidenavModule,
     MatButtonModule,
     MatInputModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDialogModule
   ],
   providers: [ RackService ],
   bootstrap: [AppComponent]

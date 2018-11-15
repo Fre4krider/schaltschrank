@@ -10,12 +10,12 @@
           (click)="deleteRack(rack)">x</button>
         </li>
       </ul>
-    <button mat-raised-button class="addRackBtn" mat-button (click)="addRackClick()">Add Rack</button>
+    <button mat-raised-button class="addRackBtn" mat-button (click)="openDialog()">Add Rack</button>
   </mat-sidenav>
 
   <mat-sidenav-content>
     <p><button class="toggleBtn" mat-button (click)="sidenav.toggle()">Show Racks</button></p>
     <app-new-rack *ngIf="addRackClicked" (valueChange)="hideAddRackForm($event)"></app-new-rack>
-    <app-rack [selectedRack]="selectedRack"></app-rack>
+    <app-rack *ngIf="!addRackClicked" [selectedRack]="selectedRack"></app-rack>
   </mat-sidenav-content>
 </mat-sidenav-container>

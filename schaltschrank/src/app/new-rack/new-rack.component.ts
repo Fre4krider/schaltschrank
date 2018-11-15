@@ -36,7 +36,7 @@ export class NewRackComponent implements OnInit {
   /**
    * Adds a new Rack
    */
-  onAddRack(): void {
+  onAddRackSave(): void {
     if (this.idValidator.valid && this.heightValidator.valid && this.widthValidator.valid) {
       const rack: Rack = new Rack(this.rackID, this.rackHeight, this.rackWidth);
       this.valueChange.emit(false);

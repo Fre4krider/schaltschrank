@@ -1,33 +1,36 @@
-<form class="inputForm">
-  <mat-form-field class="full-width">
-    <input matInput placeholder="Rack ID" [formControl]="idValidator" [(ngModel)]="rackID" required>
-  </mat-form-field>
-  <mat-form-field class="full-width">
-    <input matInput type="number" placeholder="Height" [formControl]="heightValidator" [(ngModel)]="rackHeight" required>
-    <mat-hint>Between 1 and 50</mat-hint>
-    <mat-error *ngIf="heightValidator.hasError('required')">
-    Height is required.
-    </mat-error>  
-    <mat-error *ngIf="heightValidator.hasError('min')" >
-    Minimum Height is 1.
-    </mat-error>
-    <mat-error *ngIf="heightValidator.hasError('max')" >
-    Maximum Height is 50.
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field class="full-width">
-    <input matInput type="number" placeholder="Width" [formControl]="widthValidator" [(ngModel)]="rackWidth" required>
-    <mat-hint>Between 1 and 30</mat-hint>
-    <mat-error *ngIf="widthValidator.hasError('required')">
-    Width is required.
-    </mat-error> 
-    <mat-error *ngIf="widthValidator.hasError('min')" >
-    Minimum Width is 1.
-    </mat-error> 
-    <mat-error *ngIf="widthValidator.hasError('max')" >
-    Maximum Width is 30.
-    </mat-error>
-  </mat-form-field>
-<button mat-raised-button class="buttons" (click)="onAddRack()">Save</button>
-<button mat-button class="buttons" (click)="onCancel()">Cancel</button>
-</form>
+<h1 mat-dialog-title>Add new Rack</h1>
+<div mat-dialog-content>
+    <form class="inputForm">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Rack ID" [formControl]="idValidator" [(ngModel)]="rackID" required>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput type="number" placeholder="Height" [formControl]="heightValidator" [(ngModel)]="rackHeight" required>
+        <mat-hint>Between 1 and 50</mat-hint>
+        <mat-error *ngIf="heightValidator.hasError('required')">
+        Height is required.
+        </mat-error>  
+        <mat-error *ngIf="heightValidator.hasError('min')" >
+        Minimum Height is 1.
+        </mat-error>
+        <mat-error *ngIf="heightValidator.hasError('max')" >
+        Maximum Height is 50.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput type="number" placeholder="Width" [formControl]="widthValidator" [(ngModel)]="rackWidth" required>
+        <mat-hint>Between 1 and 30</mat-hint>
+        <mat-error *ngIf="widthValidator.hasError('required')">
+        Width is required.
+        </mat-error> 
+        <mat-error *ngIf="widthValidator.hasError('min')" >
+        Minimum Width is 1.
+        </mat-error> 
+        <mat-error *ngIf="widthValidator.hasError('max')" >
+        Maximum Width is 30.
+        </mat-error>
+      </mat-form-field>
+    <button mat-raised-button class="buttons" (click)="onAddRackSave()">Save</button>
+    <button mat-button class="buttons" (click)="onCancel()">Cancel</button>
+    </form>
+</div>
