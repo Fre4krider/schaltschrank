@@ -5,6 +5,7 @@ import { Device } from '../device/device';
 import { Rack } from '../rack/rack';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { NewDeviceDialogComponent } from '../new-device-dialog/new-device-dialog.component';
+import { DeviceDataService } from '../device-data.service';
 
 @Component({
   selector: 'app-new-device',
@@ -32,7 +33,7 @@ export class NewDeviceComponent implements OnInit {
     Validators.max(30)
   ]);
   constructor(
-    private rackService: RackService, public errorDialog: MatDialog,
+    private rackService: RackService, private deviceDataService: DeviceDataService, public errorDialog: MatDialog,
     public newDeviceDialogRef: MatDialogRef<NewDeviceComponent>) { } //
 
   ngOnInit() {
@@ -45,7 +46,7 @@ export class NewDeviceComponent implements OnInit {
     let devicesAdded = false;
     this.selectedRack = this.rackService.getSelectedRack();
     if (this.idValidator.valid && this.heightValidator.valid && this.widthValidator.valid) {
-      const device: Device = new Device(this.deviceID, this.deviceHeight, this.deviceWidth);
+      const device: Device = this.deviceDataService.newDevice(this.deviceID, this.deviceHeight, this.deviceWidth);
       devicesAdded = this.rackService.addDevice(device, this.selectedRack);
       if (!devicesAdded) {
         this.openErrorDialog();

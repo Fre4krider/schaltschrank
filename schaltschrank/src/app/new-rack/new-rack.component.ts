@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RackService } from '../rack.service';
+import {RackDataService } from '../rack-data.service';
 import { Rack } from '../rack/rack';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
@@ -27,7 +28,8 @@ export class NewRackComponent implements OnInit {
     Validators.max(30)
   ]);
 
-  constructor(private rackService: RackService, public newRackDialogRef: MatDialogRef<NewRackComponent>) {}
+  constructor(private rackService: RackService, private rackDataService: RackDataService,
+    public newRackDialogRef: MatDialogRef<NewRackComponent>) {}
 
   ngOnInit() {
   }
@@ -37,7 +39,7 @@ export class NewRackComponent implements OnInit {
    */
   onAddRackSave(): void {
     if (this.idValidator.valid && this.heightValidator.valid && this.widthValidator.valid) {
-      const rack: Rack = new Rack(this.rackID, this.rackHeight, this.rackWidth);
+      const rack: Rack = this.rackDataService.newRack(this.rackID, this.rackHeight, this.rackWidth);
       this.rackService.addRack(rack);
     }
   }

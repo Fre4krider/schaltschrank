@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Rack } from './rack/rack';
 import { Device } from './device/device';
+import { RackDataService } from './rack-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class RackService {
   racks: Rack[] = [];
   private selectedRack: Rack;
 
-  constructor() { }
+  constructor(private rackDataService: RackDataService) { }
 
   private saveToLocalStorage(): void {
 
@@ -58,7 +59,7 @@ export class RackService {
    * @returns an array with all racks
    */
   getRacks(): Rack[] {
-    // this.racks = this.getFromLocalStorage();
+    this.racks = this.getFromLocalStorage();
     return this.racks;
   }
 
@@ -68,7 +69,7 @@ export class RackService {
    * @returns a array with all Devices inside the Rack
    */
   getDevices(selectedRack: Rack): Device[] {
-    return this.getRackInRacks(selectedRack).getDevices();
+    return this.rackDataService.getDevices(this.getRackInRacks(selectedRack));
   }
 
   /**
@@ -77,7 +78,7 @@ export class RackService {
    */
   addRack(rack: Rack): void {
     this.racks.push(rack);
-    // this.saveToLocalStorage();
+    this.saveToLocalStorage();
   }
 
   /**
@@ -89,14 +90,14 @@ export class RackService {
   addDevice(newDevice: Device, selectedRack: Rack): boolean {
 
     let deviceStored = false;
-    deviceStored = this.getRackInRacks(selectedRack).storeDevice(newDevice);
-    // this.saveToLocalStorage();
+    deviceStored = this.rackDataService.storeDevice(this.getRackInRacks(selectedRack), newDevice);
+    this.saveToLocalStorage();
     return deviceStored;
   }
 
   deleteDeviceFromRack(device: Device): void {
-    this.getRackInRacks(this.selectedRack).deleteDevice(device);
-    // this.saveToLocalStorage();
+    this.rackDataService.deleteDevice(this.getRackInRacks(this.selectedRack), device);
+    this.saveToLocalStorage();
   }
 
   /**
@@ -107,7 +108,7 @@ export class RackService {
     const index = this.racks.indexOf(selectedRack);
     if (index > -1) {
       this.racks.splice(index, 1);
-      // this.saveToLocalStorage();
+      this.saveToLocalStorage();
     }
   }
 }

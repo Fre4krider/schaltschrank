@@ -15,6 +15,8 @@ import { NewDeviceComponent } from './new-device/new-device.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NewDeviceDialogComponent } from './new-device-dialog/new-device-dialog.component';
 import { DeviceDetailComponent } from './device-detail/device-detail.component';
+import { RackDataService } from './rack-data.service';
+import { DeviceDataService } from './device-data.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,11 @@ import { DeviceDetailComponent } from './device-detail/device-detail.component';
     MatToolbarModule,
     MatDialogModule
   ],
-  providers: [ RackService ],
+  providers: [
+    RackService,
+    RackDataService,
+    DeviceDataService
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
