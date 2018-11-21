@@ -14,6 +14,8 @@ export class DeviceDataService {
       newDevice.height = height;
       newDevice.width = width;
 
+      console.log('New Device ');
+      console.log(newDevice);
       return newDevice;
   }
 

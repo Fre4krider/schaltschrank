@@ -6,6 +6,7 @@ export class Rack {
     id: string;
     height: number;
     width: number;
-    devices: Device[][];
+    devices: string[][];
+    deviceList: Device[];
 
 }

@@ -3,7 +3,8 @@ import { RackService } from '../rack.service';
 import {RackDataService } from '../rack-data.service';
 import { Rack } from '../rack/rack';
 import { FormControl, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatDialog } from '@angular/material';
+import { NewRackErrorDialogComponent } from '../new-rack-error-dialog/new-rack-error-dialog.component';
 
 @Component({
   selector: 'app-new-rack',
@@ -29,7 +30,7 @@ export class NewRackComponent implements OnInit {
   ]);
 
   constructor(private rackService: RackService, private rackDataService: RackDataService,
-    public newRackDialogRef: MatDialogRef<NewRackComponent>) {}
+    public newRackDialogRef: MatDialogRef<NewRackComponent>, public rackIdErrorDialog: MatDialog) {}
 
   ngOnInit() {
   }
@@ -39,8 +40,12 @@ export class NewRackComponent implements OnInit {
    */
   onAddRackSave(): void {
     if (this.idValidator.valid && this.heightValidator.valid && this.widthValidator.valid) {
-      const rack: Rack = this.rackDataService.newRack(this.rackID, this.rackHeight, this.rackWidth);
-      this.rackService.addRack(rack);
+      if (this.rackService.racks.findIndex(x => x.id === this.rackID) === -1) {
+          const rack: Rack = this.rackDataService.newRack(this.rackID, this.rackHeight, this.rackWidth);
+          this.rackService.addRack(rack);
+      } else {
+        this.rackIdErrorDialog.open(NewRackErrorDialogComponent);
+      }
     }
   }
 

@@ -69,7 +69,7 @@ export class RackService {
    * @returns a array with all Devices inside the Rack
    */
   getDevices(selectedRack: Rack): Device[] {
-    return this.rackDataService.getDevices(this.getRackInRacks(selectedRack));
+    return this.getRackInRacks(selectedRack).deviceList;
   }
 
   /**

@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Device } from './device';
-import { Rack } from '../rack/rack';
 import { NewDeviceComponent } from '../new-device/new-device.component';
 import { MatDialog } from '@angular/material';
 import { RackService } from '../rack.service';
 import { DeviceDetailComponent } from '../device-detail/device-detail.component';
-import { RackDataService } from '../rack-data.service';
 
 @Component({
   selector: 'app-device',
@@ -14,11 +12,10 @@ import { RackDataService } from '../rack-data.service';
 })
 export class DeviceComponent implements OnInit {
 
-  selectedRack: Rack;
   devices: Device[];
   selectedDevice: Device;
 
-  constructor(private rackService: RackService, private rackDataService: RackDataService,
+  constructor(private rackService: RackService,
     public newDeviceDialog: MatDialog, public deviceDetailDialog: MatDialog) { }
 
   ngOnInit() {
@@ -37,7 +34,7 @@ export class DeviceComponent implements OnInit {
    * Shows all Devices inside the rack
    */
   showDevices(): void {
-    this.devices = this.rackDataService.getDevices(this.rackService.getSelectedRack());
+    this.devices = this.rackService.getSelectedRack().deviceList;
   }
 
   openNewDeviceDialog(): void {

@@ -22,6 +22,7 @@ export class RackDataService {
       newRack.height = height;
       newRack.width = width;
       newRack.devices = [];
+      newRack.deviceList = [];
 
       for (let i = 0; i < width; i++) {
           newRack.devices[i] = [];
@@ -30,25 +31,6 @@ export class RackDataService {
           }
       }
       return newRack;
-  }
-
-/**
- * Gets all devices and returns them in an array
- * @param rack the rack you want the devices from
- */
-  getDevices(rack: Rack): Device[] {
-
-      const deviceList = [];
-
-      for (let i = 0; i < rack.devices.length; i++) {
-          for (let j = 0; j < rack.devices[i].length; j++) {
-              if (!deviceList.includes(rack.devices[i][j]) && rack.devices[i][j] !== null) {
-                  deviceList.push(rack.devices[i][j]);
-              }
-          }
-      }
-
-      return deviceList;
   }
 
   /** Stores a new Device
@@ -61,13 +43,14 @@ export class RackDataService {
       let deviceStored = false;
       const devicePos = this.findDeviceSlot(rack, newDevice);
 
-      this.deviceDataService.setDevicePos(newDevice, devicePos[0][0], devicePos[0][1]);
       if (devicePos.length !== 0) {
-              for (let i = 0; i < devicePos.length; i++) {
-                      const collumn = devicePos[i];
-                      rack.devices[collumn[0]][collumn[1]] = newDevice;
-              }
-              deviceStored = true;
+          this.deviceDataService.setDevicePos(newDevice, devicePos[0][0], devicePos[0][1]);
+          rack.deviceList.push(newDevice);
+          for (let i = 0; i < devicePos.length; i++) {
+                  const collumn = devicePos[i];
+                  rack.devices[collumn[0]][collumn[1]] = newDevice.id;
+          }
+          deviceStored = true;
       }
       return deviceStored;
       }
@@ -127,10 +110,15 @@ export class RackDataService {
   deleteDevice(rack: Rack, device: Device): void {
       for (let i = 0; i < rack.devices.length; i++) {
           for (let j = 0; j < rack.devices[i].length; j++) {
-              if (rack.devices[i][j] === device && rack.devices[i][j] !== null) {
+              if (rack.devices[i][j] === device.id && rack.devices[i][j] !== null) {
                   rack.devices[i][j] = null;
               }
           }
       }
+      rack.deviceList.forEach(function(element, index) {
+          if (element === device) {
+            rack.deviceList.splice(index, 1);
+          }
+        });
   }
 }

@@ -10,7 +10,7 @@
           (click)="deleteRack(rack)">x</button>
         </li>
       </ul>
-    <button mat-raised-button class="addRackBtn" mat-button (click)="openDialog()">Add Rack</button>
+    <button mat-raised-button class="addRackBtn" mat-button (click)="openNewRackDialog()">Add Rack</button>
   </mat-drawer>
   <mat-drawer-content>
     <app-rack [selectedRack]="selectedRack"></app-rack>

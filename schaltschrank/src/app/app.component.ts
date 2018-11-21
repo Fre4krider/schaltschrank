@@ -41,7 +41,6 @@ export class AppComponent implements OnInit {
   onSelect(rack: Rack): void {
     this.rackService.setSelectedRack(rack);
     this.selectedRack = rack;
-    console.log('Selected Rack: ' + this.selectedRack.id);
   }
 
   deleteRack(rack: Rack): void {
@@ -59,7 +58,7 @@ export class AppComponent implements OnInit {
     this.addRackClicked = value;
   }
 
-  openDialog(): void {
+  openNewRackDialog(): void {
     this.newRackDialog.open(NewRackComponent);
   }
 }
