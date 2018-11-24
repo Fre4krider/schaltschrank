@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { RackService } from './rack.service';
 import { Rack } from './rack/rack';
 import { NewRackComponent } from './new-rack/new-rack.component';
 import { MatDialog } from '@angular/material';
+
 
 
 @Component({
@@ -14,6 +15,7 @@ export class AppComponent implements OnInit {
 
   title = 'Schaltschrank';
   addRackClicked = false;
+  rackListClicked = false;
   racks: Rack[];
   selectedRack: Rack;
 
@@ -60,5 +62,13 @@ export class AppComponent implements OnInit {
 
   openNewRackDialog(): void {
     this.newRackDialog.open(NewRackComponent);
+  }
+
+  onRackListClick(): void {
+    this.rackListClicked = true;
+  }
+
+  hideRackList(value): void {
+    this.rackListClicked = value;
   }
 }

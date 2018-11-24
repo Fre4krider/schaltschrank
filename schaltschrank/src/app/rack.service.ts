@@ -51,7 +51,7 @@ export class RackService {
    * @returns the rack object inside the array
    */
   private getRackInRacks(selectedRack: Rack): Rack {
-    return this.racks[this.racks.indexOf(selectedRack)];
+      return this.racks[this.racks.findIndex(x => x.id === selectedRack.id)];
   }
 
   /**

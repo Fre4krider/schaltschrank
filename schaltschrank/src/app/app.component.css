@@ -5,11 +5,14 @@
   left: 0;
   right: 0;
 }
-.toggleBtn {
-  margin-left: 20px;
-}
 .addRackBtn {
   margin-left: 40px;
+  background-color: #ffff;
+}
+.rackListBtn {
+  margin-left: 40px;
+  margin-top: 5%;
+  
   background-color: #ffff;
 }
 .rack {

@@ -19,6 +19,7 @@ import { RackDataService } from './rack-data.service';
 import { DeviceDataService } from './device-data.service';
 import { NewRackErrorDialogComponent } from './new-rack-error-dialog/new-rack-error-dialog.component';
 import { NewDeviceIdErrorDialogComponent } from './new-device-id-error-dialog/new-device-id-error-dialog.component';
+import { RackListComponent } from './rack-list/rack-list.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { NewDeviceIdErrorDialogComponent } from './new-device-id-error-dialog/ne
     NewDeviceDialogComponent,
     DeviceDetailComponent,
     NewRackErrorDialogComponent,
-    NewDeviceIdErrorDialogComponent
+    NewDeviceIdErrorDialogComponent,
+    RackListComponent
   ],
   entryComponents: [
     NewRackComponent,

@@ -7,7 +7,10 @@
     <li>
       Width: {{selectedRack.width}}
     </li>
+    <li>
+      Devices: {{ selectedRack.deviceList?.length || '0' }}
+    </li>
   </ul>
   <hr>
-    <app-device></app-device>
+    <app-device [selectedRack]="selectedRack"></app-device>
 </div>

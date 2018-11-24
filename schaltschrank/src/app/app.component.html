@@ -11,8 +11,11 @@
         </li>
       </ul>
     <button mat-raised-button class="addRackBtn" mat-button (click)="openNewRackDialog()">Add Rack</button>
+    <br>
+    <button mat-raised-button class="rackListBtn" (click)="onRackListClick()">Show List</button>
   </mat-drawer>
   <mat-drawer-content>
     <app-rack [selectedRack]="selectedRack"></app-rack>
+    <app-rack-list *ngIf="rackListClicked" (valueChange)="hideRackList($event)"></app-rack-list>
   </mat-drawer-content>
 </mat-drawer-container>

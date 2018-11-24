@@ -4,3 +4,40 @@
 button {
     margin-left: 20px;
 }
+.device {
+  margin: 0px;
+  list-style-type: none;
+  width: 10em;
+  padding-inline-start: 0px;
+}
+.device li {
+  cursor: pointer;
+  position: relative;
+  left: 0;
+  background-color: #b1c7e2;
+  margin: 0.5em;
+  padding: .3em 0;
+  height: 1.6em;
+  border-radius: 5px;
+}
+.device li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+  left: .1em;
+}
+.deviceIds{
+  color: #313233;
+  display: block;
+  width: 100px;
+  margin-left: 10px;
+ }
+ button.delete {
+  position: relative;
+  left: 95px;
+  top: -18px;
+  background-color: gray !important;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+}

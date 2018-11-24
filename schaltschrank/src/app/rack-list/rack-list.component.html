@@ -1,0 +1,14 @@
+  <ul class="rack">
+    <li *ngFor="let rack of racks">
+      ID: {{rack.id}}
+      Height: {{rack.height}}
+      Width: {{rack.width}}
+      Device Count: {{rack.deviceList?.length || '0' }}
+      <ul class="device">
+        <li *ngFor="let device of rack.deviceList">
+        {{device.id}}
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <button mat-raised-button class="buttons" (click)="onCancel()">Cancel</button>

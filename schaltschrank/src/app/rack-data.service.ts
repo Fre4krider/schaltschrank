@@ -11,7 +11,7 @@ export class RackDataService {
   constructor(private deviceDataService: DeviceDataService) { }
 
   /**
-   * Creates a new Rack and returns it like the constructor did
+   * Creates a new Rack and returns it like the constructor of Rack did
    * @param id The ID of the Rack
    * @param height the Height of the Rack
    * @param width The Width of the Rack
@@ -72,26 +72,26 @@ export class RackDataService {
       while (!slotFound) {
           for (let i = 0, j = y; i < rack.devices.length; i++) {
                   if (rack.devices[i][j] === null) {
-                              for (j = y; j < rack.devices[i].length; j++) {
-                                  if (rack.devices[i][j] === null) {
-                                      freeCollumnHeight++;
-                                      devicePos.push([i, j]);
-                                      if (freeCollumnHeight === newDevice.height) {
-                                          break;
-                                      }
-                                  } else {
-                                      freeCollumnHeight = 0;
-                                      freeSlotWidth = 0;
-                                      devicePos = [];
-                                      break;
-                                  }
-                              }
-                      freeSlotWidth++;
-                      if (freeSlotWidth === newDevice.width && freeCollumnHeight === newDevice.height) {
-                          slotFound = true;
-                          break;
-                      }
-                      freeCollumnHeight = 0;
+                        for (j = y; j < rack.devices[i].length; j++) {
+                                if (rack.devices[i][j] === null) {
+                                    freeCollumnHeight++;
+                                    devicePos.push([i, j]);
+                                    if (freeCollumnHeight === newDevice.height) {
+                                        break;
+                                    }
+                                } else {
+                                    freeCollumnHeight = 0;
+                                    freeSlotWidth = 0;
+                                    devicePos = [];
+                                    break;
+                                }
+                        }
+                        freeSlotWidth++;
+                        if (freeSlotWidth === newDevice.width && freeCollumnHeight === newDevice.height) {
+                            slotFound = true;
+                            break;
+                        }
+                        freeCollumnHeight = 0;
                   }
           }
           if (freeSlotWidth !== newDevice.width && freeCollumnHeight !== newDevice.height) {
@@ -99,7 +99,7 @@ export class RackDataService {
               freeSlotWidth = 0;
               devicePos = [];
               y++;
-              if (y > newDevice.height) {
+              if (y > rack.height) {
                   break;
               }
           }
