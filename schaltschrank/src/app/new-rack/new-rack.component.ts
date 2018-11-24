@@ -36,7 +36,7 @@ export class NewRackComponent implements OnInit {
   }
 
   /**
-   * Adds a new Rack
+   * Adds a new Rack after the Save Button was clicked
    */
   onAddRackSave(): void {
     if (this.idValidator.valid && this.heightValidator.valid && this.widthValidator.valid) {

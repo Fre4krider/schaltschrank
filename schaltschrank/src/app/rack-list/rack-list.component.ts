@@ -18,6 +18,9 @@ export class RackListComponent implements OnInit {
     this.racks = this.rackService.racks;
   }
 
+  /**
+   * Closes the Rack list view
+   */
   onCancel(): void {
     this.valueChange.emit(false);
   }

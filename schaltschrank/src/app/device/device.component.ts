@@ -27,10 +27,20 @@ export class DeviceComponent implements OnInit, OnChanges {
     this.showDevices();
   }
 
+  /**
+   * Opens a new Dialog to add a Device
+   */
   addDeviceClick(): void {
-    this.openNewDeviceDialog();
+    const dialogRef = this.newDeviceDialog.open(NewDeviceComponent);
+    dialogRef.componentInstance.deviceAddedEvent.subscribe(() => {
+      this.showDevices();
+    });
   }
 
+  /**
+   * Removes a Device from a rack
+   * @param device the device to remove
+   */
   deleteDevice(device: Device): void {
     this.rackService.deleteDeviceFromRack(device);
     this.showDevices();
@@ -43,13 +53,9 @@ export class DeviceComponent implements OnInit, OnChanges {
     this.devices = this.rackService.getSelectedRack().deviceList;
   }
 
-  openNewDeviceDialog(): void {
-    const dialogRef = this.newDeviceDialog.open(NewDeviceComponent);
-    dialogRef.componentInstance.deviceAddedEvent.subscribe(() => {
-      this.showDevices();
-    });
-  }
-
+  /**
+   * Opens a Dialog with the device details
+   */
   onSelectDevice(device: Device): void {
     this.deviceDetailDialog.open(DeviceDetailComponent, {data:
       {id: device.id, height: device.height, width: device.width, xPos: device.xPos, yPos: device.yPos}});

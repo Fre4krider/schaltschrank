@@ -95,6 +95,10 @@ export class RackService {
     return deviceStored;
   }
 
+  /**
+   * Removes a Device from a selected Rack
+   * @param device the device to remove
+   */
   deleteDeviceFromRack(device: Device): void {
     this.rackDataService.deleteDevice(this.getRackInRacks(this.selectedRack), device);
     this.saveToLocalStorage();

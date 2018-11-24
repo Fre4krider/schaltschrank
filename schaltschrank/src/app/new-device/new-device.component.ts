@@ -68,10 +68,16 @@ export class NewDeviceComponent implements OnInit {
       this.newDeviceDialogRef.close();
   }
 
+  /**
+   * Opens a Error Dialog if there is no space left in the rack
+   */
   openNoSpaceErrorDialog(): void {
     this.spaceErrorDialog.open(NewDeviceDialogComponent);
   }
 
+  /**
+   * Opens a Error Dialog if the ID of the device is already in use
+   */
   openIDErrorDialog(): void {
     this.spaceErrorDialog.open(NewDeviceDialogComponent);
   }

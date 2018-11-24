@@ -32,6 +32,9 @@ export class AppComponent implements OnInit {
     this.racks = this.rackService.getRacks();
   }
 
+  /**
+   * Returns the selected rack (the Rack the User clicked on)
+   */
   getSelectedRack(): Rack {
     return this.selectedRack;
   }
@@ -45,6 +48,9 @@ export class AppComponent implements OnInit {
     this.selectedRack = rack;
   }
 
+  /**
+   * Removes the Rack the User clicked on
+   */
   deleteRack(rack: Rack): void {
     this.rackService.deleteRack(rack);
     this.rackService.setSelectedRack(undefined);
@@ -60,14 +66,24 @@ export class AppComponent implements OnInit {
     this.addRackClicked = value;
   }
 
+  /**
+   * Opens a DIalog to add a new Rack
+   */
   openNewRackDialog(): void {
     this.newRackDialog.open(NewRackComponent);
   }
 
+  /**
+   * Opens the Listview of all Racks
+   */
   onRackListClick(): void {
     this.rackListClicked = true;
   }
 
+  /**
+   * Called if onCancel was clicked on the RackList Form
+   * @param value boolean
+   */
   hideRackList(value): void {
     this.rackListClicked = value;
   }

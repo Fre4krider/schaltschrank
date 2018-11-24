@@ -107,6 +107,11 @@ export class RackDataService {
   return devicePos;
   }
 
+  /**
+   * Helper Method to remove a device from a rack
+   * @param rack The selected Rack
+   * @param device the Device you want to remove
+   */
   deleteDevice(rack: Rack, device: Device): void {
       for (let i = 0; i < rack.devices.length; i++) {
           for (let j = 0; j < rack.devices[i].length; j++) {
