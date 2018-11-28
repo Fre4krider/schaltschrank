@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Rack } from '../rack/rack';
-import { RackService } from '../rack.service';
+import { Rack } from '../models/rack';
+import { RackService } from '../services/rack.service';
 
 @Component({
   selector: 'app-rack-list',

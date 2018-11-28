@@ -1,11 +1,11 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { RackService } from '../rack.service';
-import { Device } from '../device/device';
-import { Rack } from '../rack/rack';
+import { RackService } from '../services/rack.service';
+import { Device } from '../models/device';
+import { Rack } from '../models/rack';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { NewDeviceDialogComponent } from '../new-device-dialog/new-device-dialog.component';
-import { DeviceDataService } from '../device-data.service';
+import { NewDeviceErrorDialogComponent } from '../new-device-error-dialog/new-device-error-dialog.component';
+import { DeviceDataService } from '../services/device-data.service';
 import { NewDeviceIdErrorDialogComponent } from '../new-device-id-error-dialog/new-device-id-error-dialog.component';
 
 @Component({
@@ -35,7 +35,7 @@ export class NewDeviceComponent implements OnInit {
   ]);
   constructor(
     private rackService: RackService, private deviceDataService: DeviceDataService, public spaceErrorDialog: MatDialog,
-    public idErrorDialog: MatDialog, public newDeviceDialogRef: MatDialogRef<NewDeviceComponent>) { } //
+    public idErrorDialog: MatDialog, public newDeviceDialogRef: MatDialogRef<NewDeviceComponent>) { }
 
   ngOnInit() {
   }
@@ -56,7 +56,7 @@ export class NewDeviceComponent implements OnInit {
               this.deviceAddedEvent.emit();
         }
       } else {
-        this.idErrorDialog.open(NewDeviceIdErrorDialogComponent);
+        this.openIDErrorDialog();
       }
     }
   }
@@ -72,13 +72,13 @@ export class NewDeviceComponent implements OnInit {
    * Opens a Error Dialog if there is no space left in the rack
    */
   openNoSpaceErrorDialog(): void {
-    this.spaceErrorDialog.open(NewDeviceDialogComponent);
+    this.spaceErrorDialog.open(NewDeviceErrorDialogComponent);
   }
 
   /**
    * Opens a Error Dialog if the ID of the device is already in use
    */
   openIDErrorDialog(): void {
-    this.spaceErrorDialog.open(NewDeviceDialogComponent);
+    this.idErrorDialog.open(NewDeviceIdErrorDialogComponent);
   }
 }

@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { RackComponent } from './rack/rack.component';
 import { DeviceComponent } from './device/device.component';
-import { RackService } from './rack.service';
+import { RackService } from './services/rack.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,10 +13,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NewDeviceComponent } from './new-device/new-device.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { NewDeviceDialogComponent } from './new-device-dialog/new-device-dialog.component';
+import { NewDeviceErrorDialogComponent } from './new-device-error-dialog/new-device-error-dialog.component';
 import { DeviceDetailComponent } from './device-detail/device-detail.component';
-import { RackDataService } from './rack-data.service';
-import { DeviceDataService } from './device-data.service';
+import { RackDataService } from './services/rack-data.service';
+import { DeviceDataService } from './services/device-data.service';
 import { NewRackErrorDialogComponent } from './new-rack-error-dialog/new-rack-error-dialog.component';
 import { NewDeviceIdErrorDialogComponent } from './new-device-id-error-dialog/new-device-id-error-dialog.component';
 import { RackListComponent } from './rack-list/rack-list.component';
@@ -28,7 +28,7 @@ import { RackListComponent } from './rack-list/rack-list.component';
     DeviceComponent,
     NewRackComponent,
     NewDeviceComponent,
-    NewDeviceDialogComponent,
+    NewDeviceErrorDialogComponent,
     DeviceDetailComponent,
     NewRackErrorDialogComponent,
     NewDeviceIdErrorDialogComponent,
@@ -37,7 +37,7 @@ import { RackListComponent } from './rack-list/rack-list.component';
   entryComponents: [
     NewRackComponent,
     NewDeviceComponent,
-    NewDeviceDialogComponent,
+    NewDeviceErrorDialogComponent,
     DeviceDetailComponent,
     NewRackErrorDialogComponent,
     NewDeviceIdErrorDialogComponent

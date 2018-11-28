@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { NewDeviceDialogComponent } from '../new-device-dialog/new-device-dialog.component';
+import { NewDeviceErrorDialogComponent } from '../new-device-error-dialog/new-device-error-dialog.component';
 
 export interface DialogData {
   id: string;
@@ -18,7 +18,8 @@ export interface DialogData {
 export class DeviceDetailComponent implements OnInit {
 
 
-  constructor(public deviceDetailDialogRef: MatDialogRef<NewDeviceDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+  constructor(public deviceDetailDialogRef: MatDialogRef<NewDeviceErrorDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   ngOnInit() {
   }

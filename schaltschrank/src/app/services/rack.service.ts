@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Rack } from './rack/rack';
-import { Device } from './device/device';
+import { Rack } from '../models/rack';
+import { Device } from '../models/device';
 import { RackDataService } from './rack-data.service';
 
 @Injectable({

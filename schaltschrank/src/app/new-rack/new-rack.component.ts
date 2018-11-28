@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RackService } from '../rack.service';
-import {RackDataService } from '../rack-data.service';
-import { Rack } from '../rack/rack';
+import { RackService } from '../services/rack.service';
+import {RackDataService } from '../services/rack-data.service';
+import { Rack } from '../models/rack';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { NewRackErrorDialogComponent } from '../new-rack-error-dialog/new-rack-error-dialog.component';

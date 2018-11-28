@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { Device } from './device';
+import { Device } from '../models/device';
 import { NewDeviceComponent } from '../new-device/new-device.component';
 import { MatDialog } from '@angular/material';
-import { RackService } from '../rack.service';
+import { RackService } from '../services/rack.service';
 import { DeviceDetailComponent } from '../device-detail/device-detail.component';
-import { Rack } from '../rack/rack';
+import { Rack } from '../models/rack';
 
 @Component({
   selector: 'app-device',
@@ -30,7 +30,7 @@ export class DeviceComponent implements OnInit, OnChanges {
   /**
    * Opens a new Dialog to add a Device
    */
-  addDeviceClick(): void {
+  onAddDeviceClick(): void {
     const dialogRef = this.newDeviceDialog.open(NewDeviceComponent);
     dialogRef.componentInstance.deviceAddedEvent.subscribe(() => {
       this.showDevices();

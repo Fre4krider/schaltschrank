@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
-import { RackService } from './rack.service';
-import { Rack } from './rack/rack';
+import { RackService } from './services/rack.service';
+import { Rack } from './models/rack';
 import { NewRackComponent } from './new-rack/new-rack.component';
 import { MatDialog } from '@angular/material';
 
@@ -28,19 +28,12 @@ export class AppComponent implements OnInit {
   /**
    * Gets all Racks via Service and saves them in the Component
    */
-  getRacks(): void {
+  private getRacks(): void {
     this.racks = this.rackService.getRacks();
   }
 
   /**
-   * Returns the selected rack (the Rack the User clicked on)
-   */
-  getSelectedRack(): Rack {
-    return this.selectedRack;
-  }
-
-  /**
-   * Stores a selected rack
+   * Stores the selected rack so services have access to it
    * @param rack the selected Rack
    */
   onSelect(rack: Rack): void {
@@ -51,7 +44,7 @@ export class AppComponent implements OnInit {
   /**
    * Removes the Rack the User clicked on
    */
-  deleteRack(rack: Rack): void {
+  onDeleteRack(rack: Rack): void {
     this.rackService.deleteRack(rack);
     this.rackService.setSelectedRack(undefined);
     this.selectedRack = undefined;
@@ -59,7 +52,7 @@ export class AppComponent implements OnInit {
 
   /**
    * Hides the Add new Rack Form after hitting the Save or Cancel button
-   * Gets triggert by EventEmitter
+   * Gets triggered by EventEmitter
    * @param value boolean provided by the valueChanged variable in the HTML Template
    */
   hideAddRackForm(value): void {
@@ -69,7 +62,7 @@ export class AppComponent implements OnInit {
   /**
    * Opens a DIalog to add a new Rack
    */
-  openNewRackDialog(): void {
+  onOpenNewRackDialog(): void {
     this.newRackDialog.open(NewRackComponent);
   }
 

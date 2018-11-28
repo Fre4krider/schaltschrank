@@ -7,10 +7,10 @@
             {{rack.id}}
           </span>
           <button class="delete" title="delete rack"
-          (click)="deleteRack(rack)">x</button>
+          (click)="onDeleteRack(rack)">x</button>
         </li>
       </ul>
-    <button mat-raised-button class="addRackBtn" mat-button (click)="openNewRackDialog()">Add Rack</button>
+    <button mat-raised-button class="addRackBtn" mat-button (click)="onOpenNewRackDialog()">Add Rack</button>
     <br>
     <button mat-raised-button class="rackListBtn" (click)="onRackListClick()">Show List</button>
   </mat-drawer>

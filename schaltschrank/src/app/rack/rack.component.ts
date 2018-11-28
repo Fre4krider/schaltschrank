@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Rack } from './rack';
+import { Rack } from '../models/rack';
 
 @Component({
   selector: 'app-rack',

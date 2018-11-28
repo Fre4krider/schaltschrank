@@ -1,12 +1,12 @@
   <ul class="rack">
     <li *ngFor="let rack of racks">
-      ID: {{rack.id}}
+      ID: <b>{{rack.id}}</b>
       Height: {{rack.height}}
       Width: {{rack.width}}
       Device Count: {{rack.deviceList?.length || '0' }}
       <ul class="device">
         <li *ngFor="let device of rack.deviceList">
-        {{device.id}}
+        ID: <b>{{device.id}}</b> | Pos: ({{device.xPos}},{{device.yPos}}) Height: {{device.height}} Width: {{device.width}}
         </li>
       </ul>
     </li>
